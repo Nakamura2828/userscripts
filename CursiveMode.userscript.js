@@ -16,6 +16,7 @@
 // * "PMingLiU & Extension" : https://docs.microsoft.com/en-us/typography/font-list/mingliu  Traditional Chinese mincho font
 // * "SimSun & Extension" : https://docs.microsoft.com/en-us/typography/font-list/simsun     Simplified Chiense mincho font
 // * "Batang" : https://docs.microsoft.com/en-us/typography/font-list/batang                 Korean mincho font
+// * "Nom Na Tong" : http://nomfoundation.org/nom-tools/Nom-Font                             Vietnamese mincho font
 
 
 const covered_tags = ['p','span','a','h1', 'h2', 'h3', 'h4', 'h5', 'h6','th', 'td']
@@ -32,10 +33,13 @@ if(debug){
 }
 
 // Set style sheets
-GM_addStyle(cssTagString + '{font-family: "School", Helvetica, Arial, sans-serif, "A-OTF 教科書ICA Pro", HanaMinA, HanaMinB !important;}');      //generic & Japanese
-GM_addStyle('* *[lang="zh-Hant"]{ color: red; font-family: PMingLiU, PMingLiU-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');//traditional Chinese
-GM_addStyle('* *[lang="zh-Hans"]{ color: blue; font-family: SimSun, SimSun-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');   //simplified Chinese
-GM_addStyle('* *[lang="ko"]{ color: green; font-family: BatangChe, Batang, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');         //Korean
+GM_addStyle(cssTagString + '{font-family: "School", Helvetica, Arial, "A-OTF 教科書ICA Pro", "A-OTF Kyoukasho ICA Pro", HanaMinA, HanaMinB, sans-serif !important;}');      //generic & assumed default Japanese
+GM_addStyle('*[lang="ja"]{ color: navy; font-family: "A-OTF 教科書ICA Pro", "A-OTF Kyoukasho ICA Pro", HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');//Japanese
+GM_addStyle('*[lang="zh-Hant"]{ color: red; font-family: PMingLiU, PMingLiU-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');//traditional Chinese
+GM_addStyle('*[lang="zh-Hant-HK"]{ color: maroon; font-family: MingLiU_HKSCS, MingLiU_HKSCS-ExtB, PMingLiU, PMingLiU-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');//traditional Chinese (Hong Kong)
+GM_addStyle('*[lang="zh-Hans"]{ color: blue; font-family: SimSun, SimSun-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');   //simplified Chinese
+GM_addStyle('*[lang="ko"]{ color: green; font-family: BatangChe, Batang, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');         //Korean
+GM_addStyle('*[lang="vi-Hani"], .vi-nom{ color: palevioletred; font-family: "Nom Na Tong", HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');              //Vietnamese
 GM_addStyle(':root, body, body *{background-color: rgb(253, 246, 227) !important;}');  //Solarize background
 GM_addStyle('.fix_text_size{font-size: 25px !important; }');         //fix small text
 
