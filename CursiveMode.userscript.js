@@ -1,13 +1,22 @@
 // ==UserScript==
 // @name         CursiveMode
 // @namespace    https://github.com/Nakamura2828/
-// @version      0.1
-// @description  turn text to cursive
+// @version      0.2
+// @description  turn text to cursive to help concentrate while reading (like reader mode); takes into account CJK variants
 // @author       John Knox
 // @match http*://*/*
 // @grant GM_addStyle
 // @grant GM_log  //needed?
 // ==/UserScript==
+
+// Makes use of the following fonts:
+// * "School Cursive": http://davidocchino.com/portfolio/typography/school.html              Cursive Latin script with contextual alternative connectors
+// * "Kyoukasho ICA"/ "教科書ICA Pro": https://en.morisawa.co.jp/fonts/specimen/2487          Japanese "textbook" font
+// * "Hanazono A & B" / "花園明朝" : http://fonts.jp/hanazono/                                Japanese / CJK "full-coverage" mincho font
+// * "PMingLiU & Extension" : https://docs.microsoft.com/en-us/typography/font-list/mingliu  Traditional Chinese mincho font
+// * "SimSun & Extension" : https://docs.microsoft.com/en-us/typography/font-list/simsun     Simplified Chiense mincho font
+// * "Batang" : https://docs.microsoft.com/en-us/typography/font-list/batang                 Korean mincho font
+
 
 const covered_tags = ['p','span','a','h1', 'h2', 'h3', 'h4', 'h5', 'h6','th', 'td']
 const threshold = 25;
@@ -24,9 +33,9 @@ if(debug){
 
 // Set style sheets
 GM_addStyle(cssTagString + '{font-family: "School", Helvetica, Arial, sans-serif, "A-OTF 教科書ICA Pro", HanaMinA, HanaMinB !important;}');      //generic & Japanese
-GM_addStyle('* *[lang="zh-Hant"]{ color: red; font-family: PMingLiU, PMingLiU-ExtB, HanaMinA, HanaMinBinherit, School, Helvetica, Arial, sans-serif !important; }');//traditional Chinese
-GM_addStyle('* *[lang="zh-Hans"]{ color: blue; font-family: SimSun, SimSun-ExtB, HanaMinA, HanaMinBinherit, School, Helvetica, Arial, sans-serif !important; }');   //simplified Chinese
-GM_addStyle('* *[lang="ko"]{ color: green; font-family: BatangChe, Batang, HanaMinA, HanaMinBinherit, School, Helvetica, Arial, sans-serif !important; }');         //Korean
+GM_addStyle('* *[lang="zh-Hant"]{ color: red; font-family: PMingLiU, PMingLiU-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');//traditional Chinese
+GM_addStyle('* *[lang="zh-Hans"]{ color: blue; font-family: SimSun, SimSun-ExtB, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');   //simplified Chinese
+GM_addStyle('* *[lang="ko"]{ color: green; font-family: BatangChe, Batang, HanaMinA, HanaMinB, School, Helvetica, Arial, sans-serif !important; }');         //Korean
 GM_addStyle(':root, body, body *{background-color: rgb(253, 246, 227) !important;}');  //Solarize background
 GM_addStyle('.fix_text_size{font-size: 25px !important; }');         //fix small text
 
